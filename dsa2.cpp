@@ -101,10 +101,7 @@ int covertInfixToPostfix(char *expression, int no)
         {expression[++j] = pop(stack);}
 
     expression[++j] = NULL;
-    if (no==1)
-        printf("%s", expression);
-    else ;
-
+    
 }
 
 void reverse (char *exp)
@@ -113,8 +110,8 @@ void reverse (char *exp)
   int j = size, i = 0;
   char temp[size];
 
-  temp[j--] = '\0';
-  while (exp[i] != '\0')
+  temp[j--] = NULL;
+  while (exp[i] != NULL)
     {
       temp[j] = exp[i];
       j--;
@@ -126,7 +123,7 @@ void reverse (char *exp)
 void brackets (char *exp)
 {
   int i = 0;
-  while (exp[i] != '\0')
+  while (exp[i] != NULL)
     {
       if (exp[i] == '(')
 	exp[i] = ')';
@@ -150,7 +147,7 @@ int evaluatePostfix(char* exp)
   	struct Stack* stack = new Stack(); 
 	stack->top = -1; 
 	stack->capacity = strlen(exp); 
-	stack->array = (int*) malloc(stack->capacity * sizeof(int)); 
+	stack->array = new (int); 
 	for (int i = 0; exp[i]; ++i) 
 	{ 
 		if (isdigit(exp[i])) 
@@ -173,25 +170,44 @@ int evaluatePostfix(char* exp)
 
 int main() 
 { 
-    int a;
-    cout<<"Enter case number"<<endl;
-    cin >> a;
-    switch(a){
-  	case 1:
-      	{char expression[] = "a+b-e*(h+r)";
-        cout<<"The Postfix expression is:\n";
-      	covertInfixToPostfix(expression,1);
-      	cout<<endl;
-      	break;}
-  	case 2:
-        {char expression1[] = "(P+(Q*R)/(S-T))";
-        conversionInfixToPrefix (expression1);
-        cout << "The prefix expression is: \n";
-        cout << expression1<<endl;
-        break;}
-    case 3:
-    	{char exp[] = "231*+9-"; 
-    	cout<<"postfix evaluation: "<< evaluatePostfix(exp); 	
-    	break;}
+    cout<<" 0. To quit \n 1. To convert infix to prefix \n 2. To convert infix to postfix \n 3. To evaluate postfix expression \n 4. To evaluate prefix expression \n";
+    while(true){
+        int a;
+        cout<<endl;
+        cout<<"Enter case number: ";
+        cin >> a;
+        cout<<endl;
+        if(a==0) break;
+        else{
+            switch(a){
+            case 1:
+                {
+                char expression[100];
+                cout<< "Enter infix expression to be converted into postfix: ";
+                cin>>expression;
+                cout<<endl;
+                covertInfixToPostfix(expression,1);
+                cout<<"The Postfix expression is: "<<expression<<endl;
+                break;}
+            case 2:
+                {char expression[100];
+                cout<<"Enter Infix expression to be converted into Prefix: ";
+                cin>>expression;
+                cout<<endl;
+                conversionInfixToPrefix (expression);
+                cout << "The prefix expression is: "<<expression<<endl;;
+                
+                break;}
+            case 3:
+                {
+                char exp[100]; 
+                cout<<"Enter postfix expression to be evaluated: ";
+                cin>>exp;
+                cout<<endl;
+                cout<<"postfix evaluation: "<< evaluatePostfix(exp)<<endl; 	
+                break;}
+            }
+        }    
     }
+    return 0;
 } 
