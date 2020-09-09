@@ -100,8 +100,11 @@ int covertInfixToPostfix(char *expression, int no)
     while (!isEmpty(stack))
         {expression[++j] = pop(stack);}
 
-    expression[++j] = NULL;
-    
+    expression[++j] = NULL;   
+}
+
+int top(struct Stack* sp){
+    return sp->array[sp->top];
 }
 
 void reverse (char *exp)
@@ -168,8 +171,55 @@ int evaluatePostfix(char* exp)
 	return pop(stack); 
 } 
 
+int evaluatePrefix(char * exp) 
+{ 
+    struct Stack* stack = new Stack(); 
+	stack->top = -1; 
+	stack->capacity = strlen(exp); 
+	stack->array = new (int); 
+  
+    for (int j = strlen(exp) - 1; j >= 0; j--) { 
+  
+        // Push operand to Stack 
+        // To convert exprsn[j] to digit subtract 
+        // '0' from exprsn[j]. 
+        if (isdigit(exp[j])) 
+            push(stack ,exp[j] - '0'); 
+  
+        else { 
+  
+            // Operator encountered 
+            // Pop two elements from Stack 
+            double o1 = top(stack); 
+            pop(stack); 
+            double o2 = top(stack); 
+            pop(stack); 
+  
+            // Use switch case to operate on o1 
+            // and o2 and perform o1 O o2. 
+            switch (exp[j]) { 
+            case '+': 
+                push(stack, o1 + o2); 
+                break; 
+            case '-': 
+                push(stack,o1 - o2); 
+                break; 
+            case '*': 
+                push(stack,o1 * o2); 
+                break; 
+            case '/': 
+                push(stack,o1 / o2); 
+                break; 
+            } 
+        } 
+    } 
+  
+    return top(stack); 
+} 
+
 int main() 
 { 
+    cout<<"-------------------Infix to postfix,prefix covertor, evaluator.-------------------"<<endl;
     cout<<" 0. To quit \n 1. To convert infix to prefix \n 2. To convert infix to postfix \n 3. To evaluate postfix expression \n 4. To evaluate prefix expression \n";
     while(true){
         int a;
@@ -205,6 +255,14 @@ int main()
                 cin>>exp;
                 cout<<endl;
                 cout<<"postfix evaluation: "<< evaluatePostfix(exp)<<endl; 	
+                break;}
+            case 4:
+                {
+                char exp[100]; 
+                cout<<"Enter prefix expression to be evaluated: ";
+                cin>>exp;
+                cout<<endl;
+                cout<<"prefix evaluation: "<< evaluatePrefix(exp)<<endl; 	
                 break;}
             }
         }    
