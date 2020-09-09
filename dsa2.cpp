@@ -71,7 +71,7 @@ int precedence(char ch)
     return -1; 
 }
 
-char covertInfixToPostfix(char *expression)
+int covertInfixToPostfix(char *expression, int no)
 {
     struct Stack *stack = new (Stack);
     stack->capacity = strlen(expression);
@@ -94,7 +94,7 @@ char covertInfixToPostfix(char *expression)
         else if (expression[i] == ')')
         {
             while (!isEmpty(stack) && peek1(stack) != '(')
-                expression[++j] = pop(stack);
+                {expression[++j] = pop(stack);}
             if (!isEmpty(stack) && peek1(stack) != '(')
                 return -1; // invalid expression
             else
@@ -103,17 +103,58 @@ char covertInfixToPostfix(char *expression)
         else // if an opertor
         {
             while (!isEmpty(stack) && precedence(expression[i]) <= precedence(peek(stack)))
-                expression[++j] = pop(stack);
+                {expression[++j] = pop(stack);}
             push(stack, expression[i]);
         }
     }
     while (!isEmpty(stack))
-        expression[++j] = pop(stack);
+        {expression[++j] = pop(stack);}
 
     expression[++j] = '\0';
-    printf("%s", expression);
+    if (no==1)
+        printf("%s", expression);
+    else ;
+
 }
 
+void reverse (char *exp)
+{				//reverse function for expression
+
+  int size = strlen (exp);
+  int j = size, i = 0;
+  char temp[size];
+
+  temp[j--] = '\0';
+  while (exp[i] != '\0')
+    {
+      temp[j] = exp[i];
+      j--;
+      i++;
+    }
+  strcpy (exp, temp);
+}
+
+void brackets (char *exp)
+{
+  int i = 0;
+  while (exp[i] != '\0')
+    {
+      if (exp[i] == '(')
+	exp[i] = ')';
+      else if (exp[i] == ')')
+	exp[i] = '(';
+      i++;
+    }
+}
+
+void conversionInfixToPrefix (char *exp)
+{
+  int size = strlen (exp);
+  reverse (exp);
+  brackets (exp);
+  covertInfixToPostfix (exp,0);
+  reverse (exp);
+}
 
 
 // The main function that returns value of a given postfix expression 
@@ -160,7 +201,14 @@ int evaluatePostfix(char* exp)
 int main() 
 { 
   	char expression[] = "a+b-e*(h+r)";
-  	cout<< covertInfixToPostfix(expression)<<endl;
+  	covertInfixToPostfix(expression,1);
+  	cout<<endl;
+  	cout << "The infix expression is: \n";
+    char expression1[] = "(P+(Q*R)/(S-T))";
+    cout << expression1 << "\n";
+    conversionInfixToPrefix (expression1);
+    cout << "The prefix expression is: \n";
+    cout << expression1<<endl;
 	char exp[] = "231*+9-"; 
 	cout<<"postfix evaluation: "<< evaluatePostfix(exp); 
 	
