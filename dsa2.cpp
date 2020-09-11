@@ -14,20 +14,20 @@ struct Stack
 // Stack Operations 
 
 
-int isEmpty(struct Stack* stack) 
+inline int isEmpty(struct Stack* stack) 
 { 
 	return stack->top == -1 ; 
 } 
 
-char peek(struct Stack* stack) 
+inline char peek(struct Stack* stack) 
 { 
 	return stack->array[stack->top]; 
 } 
 
 char pop(struct Stack* stack) 
 { 
-	if (!isEmpty(stack)) 
-		return stack->array[stack->top--] ; 
+	if (!isEmpty(stack)) return stack->array[stack->top--] ; 
+    return 0;
 } 
 
 void push(struct Stack* stack, char op) 
@@ -43,7 +43,7 @@ int peek1(struct Stack* stack)
 } 
 
 
-int checkIfOperand(char ch) 
+inline int checkIfOperand(char ch) 
 { 
     return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'); 
 } 
@@ -66,7 +66,7 @@ int precedence(char ch)
     return -1; 
 }
 
-int covertInfixToPostfix(char *expression, int no)
+char * covertInfixToPostfix(char *expression, int no)
 {
     struct Stack *stack = new (Stack);
     stack->capacity = strlen(expression);
@@ -86,7 +86,7 @@ int covertInfixToPostfix(char *expression, int no)
             while (!isEmpty(stack) && peek1(stack) != '(')
                 {expression[++j] = pop(stack);}
             if (!isEmpty(stack) && peek1(stack) != '(')
-                return -1; 
+                continue;
             else
                 pop(stack);
         }
@@ -100,10 +100,11 @@ int covertInfixToPostfix(char *expression, int no)
     while (!isEmpty(stack))
         {expression[++j] = pop(stack);}
 
-    expression[++j] = NULL;   
+    expression[++j] = 0; 
+    return 0; 
 }
 
-int top(struct Stack* sp){
+inline int top(struct Stack* sp){
     return sp->array[sp->top];
 }
 
@@ -113,8 +114,8 @@ void reverse (char *exp)
   int j = size, i = 0;
   char temp[size];
 
-  temp[j--] = NULL;
-  while (exp[i] != NULL)
+  temp[j--] = 0;
+  while (exp[i] != 0)
     {
       temp[j] = exp[i];
       j--;
@@ -126,7 +127,7 @@ void reverse (char *exp)
 void brackets (char *exp)
 {
   int i = 0;
-  while (exp[i] != NULL)
+  while (exp[i] != 0)
     {
       if (exp[i] == '(')
 	exp[i] = ')';
