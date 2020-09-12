@@ -7,7 +7,6 @@ using namespace std;
 struct Stack 
 { 
 	int top; 
-	unsigned capacity; 
 	int* array; 
 }; 
 
@@ -69,7 +68,6 @@ int precedence(char ch)
 char * covertInfixToPostfix(char *expression, int no)
 {
     struct Stack *stack = new (Stack);
-    stack->capacity = strlen(expression);
     stack->top = -1;
     stack->array = new (int);
     int i, j;
@@ -150,7 +148,6 @@ int evaluatePostfix(char* exp)
 { 
   	struct Stack* stack = new Stack(); 
 	stack->top = -1; 
-	stack->capacity = strlen(exp); 
 	stack->array = new (int); 
 	for (int i = 0; exp[i]; ++i) 
 	{ 
@@ -176,7 +173,6 @@ int evaluatePrefix(char * exp)
 { 
     struct Stack* stack = new Stack(); 
 	stack->top = -1; 
-	stack->capacity = strlen(exp); 
 	stack->array = new (int); 
   
     for (int j = strlen(exp) - 1; j >= 0; j--) { 
