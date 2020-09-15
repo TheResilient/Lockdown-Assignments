@@ -85,13 +85,14 @@ int main(){
     }
         
     int i=0;
-    if(len>0 && len<q.size){
+    cout<<"Resulted queue is: ";
+    if(len>0 && len<=q.size){
         while(i<len){
-            cout<<q.arr[i]<<", ";
+            cout<<" "<<q.arr[i]<<", ";
             i++;
         }
     }
-    else{printf("queue is empty");}
+    else{printf("empty");}
     return 0;
 }
 
