@@ -16,7 +16,7 @@ class Employee
         name = get.nextLine();
         System.out.println("Enter mail id of employee: ");
         mail=get.nextLine();
-        System.out.println("Enter adress id of employee: ");
+        System.out.println("Enter address of employee: ");
         address=get.nextLine();
         System.out.println("Enter id of the Employee:");
         id = get.nextInt();
@@ -42,6 +42,7 @@ class Programmer extends Employee
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
+    System.out.println("designation: Programmer");
     System.out.print("Net Pay: ");    
     System.out.println(np);
     System.out.print("and Gross Pay: ");    
@@ -60,6 +61,7 @@ class AssistantProjectManager extends Employee
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
+    System.out.println("designation: AssistantProjectManager");
     System.out.print("Net Pay: ");    
     System.out.println(np);
     System.out.print("and Gross Pay is: ");    
@@ -81,6 +83,7 @@ class ProjectManager extends Employee
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
+    System.out.println("designation: ProjectManager");
     System.out.print("Net Pay: ");    
     System.out.println(np);
     System.out.print("and Gross Pay: ");    
@@ -100,6 +103,7 @@ class TeamLead extends Employee
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
+    System.out.println("designation: TeamLead");
     System.out.print("Net Pay: ");    
     System.out.println(np);
     System.out.print("and Gross Pay: ");    
@@ -111,9 +115,25 @@ public class Main
 {
   public static void main (String args[])
   {
-
-    Programmer nameofemployee= new Programmer();
+    System.out.println("==============For Programmer=============");
+    Programmer nameofemployee1= new Programmer();
     
+    System.out.println("==============For AssistantProjectManager=============");
+    AssistantProjectManager nameofemployee2= new AssistantProjectManager();
+    
+    System.out.println("==============For ProjectManager=============");
+    ProjectManager nameofemployee3= new ProjectManager();
+    
+    System.out.println("==============For TeamLead=============");
+    TeamLead nameofemployee4= new TeamLead();
+    System.out.println("==========================");
+    nameofemployee1.printpay1();
+    System.out.println("==========================");
+    nameofemployee2.printpay1();
+    System.out.println("==========================");
+    nameofemployee3.printpay1();
+    System.out.println("==========================");
+    nameofemployee4.printpay1();
 
   }
 }
