@@ -1,5 +1,3 @@
-
-
 //Emp_name, Emp_id, Address, Mail_id, and Mobile_no 
 
 import java.util.Scanner;
@@ -38,7 +36,8 @@ class Programmer extends Employee
     double da=0.97*pay;
     double hra=.1*pay;
     double pf=.12*pay;
-    double gp=pay + da + hra;
+    double sf=.001*pay;
+    double gp=pay + da + sf + hra;
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
@@ -57,7 +56,8 @@ class AssistantProjectManager extends Employee
     double da=0.97*pay;
     double hra=.1*pay;
     double pf=.12*pay;
-    double gp=pay + da + hra;
+    double sf=.001*pay;
+    double gp=pay + da + sf + hra;
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
@@ -79,7 +79,8 @@ class ProjectManager extends Employee
     double da=0.97*pay;
     double hra=.1*pay;
     double pf=.12*pay;
-    double gp=pay + da + hra;
+    double sf=.001*pay;
+    double gp=pay + da + sf + hra;
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
@@ -99,7 +100,8 @@ class TeamLead extends Employee
     double da=0.97*pay;
     double hra=.1*pay;
     double pf=.12*pay;
-    double gp=pay + da + hra;
+    double sf=.001*pay;
+    double gp=pay + da + sf + hra;
     double np=gp-pf;
     System.out.print("Name of Employee: ");    
     System.out.println(name);
