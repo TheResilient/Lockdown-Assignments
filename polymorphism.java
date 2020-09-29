@@ -4,7 +4,7 @@ class Publication{
     public int copies;
     public int price;
     public String title;
-    public static int soldcopies;
+    static int soldcopies;
     public void SaleCopy(){
         System.out.println("==========================Total sold data==========================");
         System.out.println("Total Sold copies combine of books and magazines are "+soldcopies);
