@@ -5,19 +5,18 @@ public class exceptionassignment {
         String arr[]= new String[2];
         try{
             int i=0;
-            while(true){
+            while(i<2){
                 System.out.println("enter number or x to break: ");
-                String in=s.nextLine();
-                if(in=="x") break;
-                else {
-                    arr[i]= in;
-                }
+                String j= s.nextLine();
+                if(j=="x") break;
+                arr[i]=j;
                 i++;
             }
             int a= Integer.parseInt(arr[0]);
             int b= Integer.parseInt(arr[1]);
-            System.out.println("Division is: ");
-            System.out.println(a/b);
+            int j=a/b;
+            System.out.println("\nDivision is: ");
+            System.out.println(j);
         }
         catch(ArrayIndexOutOfBoundsException e) {
             System.out.println("Array is full so you cannot add more values!!\n");
