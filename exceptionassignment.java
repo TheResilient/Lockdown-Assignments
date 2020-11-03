@@ -1,22 +1,27 @@
 import java.util.Scanner;
 public class exceptionassignment {
     public static void main(String[] args) {        
-        Scanner s= new Scanner(System.in);
         String arr[]= new String[2];
         try{
             int i=0;
-            while(i<2){
-                System.out.println("enter number or x to break: ");
-                String j= s.nextLine();
-                if(j=="x") break;
-                arr[i]=j;
+            boolean j= true;
+            while(j){
+                Scanner s= new Scanner(System.in);
+                
+                System.out.println("enter number: ");
+                String in=s.nextLine();
+                arr[i]= in;
+                System.out.println("do you want to enter one more number(1/0): \n");
+                int k= s.nextInt();
+                if(k==0){
+                    j=false;
+                }
                 i++;
             }
             int a= Integer.parseInt(arr[0]);
             int b= Integer.parseInt(arr[1]);
-            int j=a/b;
-            System.out.println("\nDivision is: ");
-            System.out.println(j);
+            System.out.println("Division is: ");
+            System.out.println(a/b);
         }
         catch(ArrayIndexOutOfBoundsException e) {
             System.out.println("Array is full so you cannot add more values!!\n");
