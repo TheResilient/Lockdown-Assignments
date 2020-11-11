@@ -169,7 +169,7 @@ int main() {
         cout << "7. print copy of bst" << endl;
         cout << "8. print leaf nodes" << endl;
         cout << "9. print non recursive inorder traversal" << endl;
-        cout << "10. "<<endl;
+        cout << "10. print tree level wise"<<endl;
         cout << "Enter here: ";
         cin >>option;
         
@@ -185,6 +185,7 @@ int main() {
         break;
 
         case 2:
+        printf("enter data to be searched: ");
         cin>>data;
         if(s.search(root, data)) printf("data %d found !!\n", data);
         else printf("data %d not found in bst!!\n");
@@ -204,8 +205,11 @@ int main() {
         case 5:
         printf("enter data to be deleted: ");
         cin>>data;
-        root=s.deletenode(root, data);
-        printf("%d deleted from bst!!\n");
+        if(s.search(root, data)){
+            root=s.deletenode(root, data);
+            printf("%d deleted from bst!!\n");
+        }
+        else printf("data not found!!\n");
         break;
 
         case 6:
@@ -235,7 +239,13 @@ int main() {
         break;
 
         case 10:
+        s.printlevelorder(root);
         break;
         }
 
     } while (option != 0);
+
+
+
+    return 0;
+}
